@@ -1,0 +1,26 @@
+app.LoadPlugin( "Xml2Js" );
+
+function OnStart()
+{
+  lay = app.CreateLayout( "Linear", "VCenter,FillXY" );
+
+  btn = app.CreateButton( "Press Me" );
+  btn.SetOnTouch( Parse );
+  lay.AddChild( btn );
+
+  plg = app.CreateXml2Js();
+
+  app.AddLayout( lay );
+}
+
+function Parse()
+{
+  var xml = "<top id='fred' size='33'>Hello xml2js!</top>";
+  plg.ParseString( xml, OnResult );
+}
+
+function OnResult( err, result )
+{
+  alert( JSON.stringify(result) );
+}
+
